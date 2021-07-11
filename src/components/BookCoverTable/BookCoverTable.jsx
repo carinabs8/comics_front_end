@@ -3,7 +3,6 @@ import Pagination from 'react-bootstrap/Pagination'
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container'
 import Col from 'react-bootstrap/Col'
-import Image from 'react-bootstrap/Image'
 import Figure from 'react-bootstrap/Figure'
 
 class BookCoverTable extends Component {
@@ -19,21 +18,19 @@ class BookCoverTable extends Component {
 				<Row>
 		    	{this.props.reportData.results.map((item, index) => {
 			  		return(
-			  			<>
-						    <Col>
-					  			<Figure>
-									  <Figure.Image
-									    width={171}
-									    height={180}
-									    alt="171x180"
-									    src={item.thumbnail}
-									  />
-									  <Figure.Caption>
-									    {item.title}
-									  </Figure.Caption>
-									</Figure>
-						    </Col>
-			  			</>
+					    <Col key={index}>
+				  			<Figure key={index}>
+								  <Figure.Image
+								    width={171}
+								    height={180}
+								    alt="171x180"
+								    src={item.thumbnail}
+								  />
+								  <Figure.Caption>
+								    {item.title}
+								  </Figure.Caption>
+								</Figure>
+					    </Col>
 			  		)
 			  	})}
 			  </Row>
