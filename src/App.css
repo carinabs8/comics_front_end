@@ -1,6 +1,23 @@
 .App {
   text-align: center;
 }
+.header{
+  background-color: red;
+}
+
+.body{
+  background-color: black;
+  color: white;
+  font-weight: bold;
+}
+
+.body *{
+  color: white;
+}
+
+.pagination *{
+  color: red;
+}
 
 .App-logo {
   height: 40vmin;
