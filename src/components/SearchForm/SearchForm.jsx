@@ -2,8 +2,6 @@ import React, {Component} from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
-import Character from '../../datas/Character';
-import axios from 'axios';
 
 class SearchForm  extends Component {
 	constructor(props) {
@@ -12,24 +10,9 @@ class SearchForm  extends Component {
   }
 
 	_handleSubmit(event) {
-		this.name = event.target.value;
-    let object = this;
     event.preventDefault();
 		event.stopPropagation();
-  	
-    let response = axios.post('/backend/book_covers/search', {
-		  name: event.target.value
-		});
-
-    response.then(function (val) {
-      if(val >= 403){
-        object.setState({ ...object.state, status: val, loading: false})
-      }else{
-      	let item = new Character(val.data);
-        object.props.bookCoverData(item);
-      }
-      object.setState({ ...object.state})
-    });
+		this.props.setBookCoverData(event.target.value);
   }
 
 	render(){
@@ -39,7 +22,7 @@ class SearchForm  extends Component {
         <Col xs lg="6">
           <Form>
             <Form.Group className="mb-3" controlId="formSearch">
-              <Form.Control type="name" placeholder="Search by Character" onChange={this._handleSubmit.bind(this)} />
+              <Form.Control type="name" placeholder="Search by Character" onChange={this._handleSubmit.bind(this)}  />
             </Form.Group>
           </Form>
         </Col>

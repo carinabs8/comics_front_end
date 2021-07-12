@@ -2,7 +2,6 @@ import { format } from 'date-fns';
 
 export default class BookCover{
 	constructor(data){
-		console.log(data)
 		this.data = data;
 		this.results = [];
 		this.total = this.data.total
