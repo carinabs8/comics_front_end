@@ -1,34 +1,35 @@
 import React, {Component} from 'react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route
-} from "react-router-dom";
 import Row from 'react-bootstrap/Row';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import MainPage from '../MainPage';
+import SearchForm from '../../components/SearchForm';
 
 class Navigation extends Component {
+  constructor(props){
+    super(props);
+    this.state = {loading: true, bookCoverData: []}
+  }
+
+  bookCoverData(item){
+    const novoEstado = {
+      bookCoverData:this._fetchItems.bind(this)
+    }
+    
+    this.setState(novoEstado);
+  }
 
 	render(){
 		return(
-      <Row>
-  			<Router >
-          <Switch>
-            <Route path='/book_covers'>
-              <MainPage />
-            </Route>
-
-            <Route path='/b'>
-              b
-            </Route>
-
-            <Route path='/c'>
-              c
-            </Route>
-          </Switch>
-		    </Router>
-      </Row>
+      <>
+        <Row>
+          <SearchForm bookCoverData={this.bookCoverData.bind(this)}/>
+        </Row>
+        <Row>
+          
+    			<MainPage BookCoverData={this.props.bookCoverData} status={this.props.status} loading={this.props.loading}/>
+        }
+        </Row>
+      </>
 		)
 	}
 }

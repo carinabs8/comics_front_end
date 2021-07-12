@@ -8,15 +8,15 @@ import Figure from 'react-bootstrap/Figure'
 class BookCoverTable extends Component {
 	render(){
 		var PaginationElement = '';
-		if(this.props.reportData.next_page === null){
-			PaginationElement = <Pagination.Prev href={window.location.pathname +'?page=' + (this.props.reportData.preview_page)}/>
+		if(this.props.BookCoverData.next_page === null){
+			PaginationElement = <Pagination.Prev href={window.location.pathname +'?page=' + (this.props.BookCoverData.preview_page)}/>
 		}else{
-			PaginationElement = <Pagination.Next href={window.location.pathname +'?page=' + (this.props.reportData.next_page)}/>
+			PaginationElement = <Pagination.Next href={window.location.pathname +'?page=' + (this.props.BookCoverData.next_page)}/>
 		}
 		return(
 			<div>
 				<Row>
-		    	{this.props.reportData.results.map((item, index) => {
+		    	{this.props.BookCoverData.results.map((item, index) => {
 			  		return(
 					    <Col key={index}>
 				  			<Figure key={index}>
@@ -40,11 +40,11 @@ class BookCoverTable extends Component {
 							<Pagination>
 							  <Pagination.First href={window.location.pathname}/>
 							  {PaginationElement}
-							  <Pagination.Last href={window.location.pathname +'?page=' + (this.props.reportData.last_page)}/>
+							  <Pagination.Last href={window.location.pathname +'?page=' + (this.props.BookCoverData.last_page)}/>
 							</Pagination>
 						</Col>
 						<Col md={{ span: 3, offset: 0 }}>
-							<p>Total records: {this.props.reportData.total}</p>
+							<p>Total records: {this.props.BookCoverData.total}</p>
 						</Col>
 					</Row>
 				</Container>

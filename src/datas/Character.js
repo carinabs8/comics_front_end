@@ -1,9 +1,8 @@
 import { format } from 'date-fns';
 
-export default class BookCover{
+export default class Character{
 	constructor(data){
-		console.log(data)
-		this.data = data;
+		this.data = data.data;
 		this.results = [];
 		this.total = this.data.total
 		this.current_page = this.data.current_page
@@ -12,26 +11,15 @@ export default class BookCover{
 		this.preview_page = Number(this.data.current_page) - 1
 
 		this.data.results.map((item) => {
-			let data_ = new Data(item.title, item.modified, item.thumbnail)
+			let data_ = new Data(item.name, item.thumbnail)
 			this.results.push(data_);
 		}) 
 	}
 }
 
 class Data{
-	constructor(title, modified, thumbnail){
-		this.title = title;
-		this.modified = this.parseDate(modified);
+	constructor(name, thumbnail){
+		this.title = name;
 		this.thumbnail = thumbnail.path + '.' + thumbnail.extension
-	}
-
-	parseDate(date){
-		var new_date = Date.parse(date);
-		try{
-				return new_date = format(new_date, 'yyyy-MM-dd');
-			}
-		catch{
-			return new_date = '';
-		}
 	}
 }
