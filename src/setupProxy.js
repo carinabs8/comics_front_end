@@ -3,13 +3,13 @@ const morgan = require("morgan");
 
 module.exports = app => {
   app.use(
-    "/backend/book_covers",
+    "/book_covers",
     createProxyMiddleware({
-      target: 'http://localhost:3001',//process.env.REACT_APP_REPORT_URL,
+      target: 'http://localhost:3001/', //process.env.REACT_APP_BACKEND_URL,
       changeOrigin: true,
-      pathRewrite: {
-        "/backend/book_covers": "/book_covers"
-      }
+      // pathRewrite: {
+      //   "/backend/book_covers": "/book_covers"
+      // }
     })
   );
   app.use(function(req, res, next) {

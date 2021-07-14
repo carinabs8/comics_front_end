@@ -1,0 +1,31 @@
+services:
+  web_comics_front_end:
+    build:
+      context: ./.
+      dockerfile: Dockerfile
+    command: bash -c "serve -s build"
+    environment:
+      - REACT_APP_BACKEND_URL=http://localhost:3001/
+      - NODE_ENV=development
+    volumes:
+      - .:/comics_front_end
+    ports:
+      - "5000:5000"
+    networks:
+      - bridge
+      - comics_app_comics_backend
+  revproxy:
+    build:
+      context: ./docker-reverseProxy
+      dockerfile: Dockerfile
+    networks:
+      - bridge
+      - comics_app_comics_backend
+    ports:
+      - "80:80"
+    volumes:
+      - .:/comics_front_end
+networks:
+  bridge:
+  comics_app_comics_backend:
+    external: true

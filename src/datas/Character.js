@@ -1,5 +1,3 @@
-import { format } from 'date-fns';
-
 export default class Character{
 	constructor(data){
 		this.data = data.data;

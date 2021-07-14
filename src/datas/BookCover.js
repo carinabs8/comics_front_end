@@ -11,26 +11,16 @@ export default class BookCover{
 		this.preview_page = Number(this.data.current_page) - 1
 
 		this.data.results.map((item) => {
-			let data_ = new Data(item.title, item.modified, item.thumbnail)
+			let data_ = new Data(item.title, item.thumbnail)
 			this.results.push(data_);
 		}) 
 	}
 }
 
 class Data{
-	constructor(title, modified, thumbnail){
+	constructor(title, thumbnail){
 		this.title = title;
-		this.modified = this.parseDate(modified);
+		// this.modified = this.parseDate(modified);
 		this.thumbnail = thumbnail.path + '.' + thumbnail.extension
-	}
-
-	parseDate(date){
-		var new_date = Date.parse(date);
-		try{
-				return new_date = format(new_date, 'yyyy-MM-dd');
-			}
-		catch{
-			return new_date = '';
-		}
 	}
 }

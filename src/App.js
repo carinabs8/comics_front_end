@@ -22,23 +22,24 @@ class App extends Component{
 
   bookCoverData(item){
     let object = this;
-    let response = axios.post('/backend/book_covers/search', {
+    let response = axios.post('/book_covers/search', {
       name: item
     });
 
-    response.then(function (val) {
-      if(val >= 403){
-        object.setState({ ...object.state, status: val, loading: false})
+    response.then(function (resp) {
+      if(resp >= 403){
+        object.setState({ ...object.state, status: resp, loading: false})
       }else{
-        object.setState({ ...object.state, loading: false, status: 200, bookCoverData: new Character(val.data) });
+        object.setState({ ...object.state, loading: false, status: 200, bookCoverData: new Character(resp.data) });
       }
       object.setState({ ...object.state})
     });
   }
 
   componentDidMount(prevProps) {
-    let response = fetchData("/backend/book_covers" + window.location.search);
+    let response = fetchData("/book_covers" + window.location.search);
     let object = this;
+    console.log(response);
     response.then(function (val) {
       if(val >= 403){
         object.setState({ ...object.state, status: val, loading: false})
