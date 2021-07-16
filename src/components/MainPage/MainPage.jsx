@@ -5,7 +5,7 @@ class MainPage extends Component {
 	render(){
     return(
       <div style={{ width: 1500, height: 'auto' }}>
-      	<BookCoverTable BookCoverData={this.props.BookCoverData} tHead={["Title", "modified"]}/>
+      	<BookCoverTable BookCoverData={this.props.BookCoverData} tHead={["Title", "modified"]} />
       </div>
     )
   }

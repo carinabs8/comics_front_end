@@ -9,8 +9,9 @@ http {
   server {
     listen 80;
 
-    location /book_covers {
-      proxy_pass         http://comics_app_web_1:3001/;
+    location /api {
+      rewrite /api/(.*) /$1  break;
+      proxy_pass         http://comic_app_web_1:4001;
       proxy_redirect     off;
       proxy_set_header   Host $host;
       proxy_set_header   X-Real-IP $remote_addr;
@@ -19,7 +20,7 @@ http {
     }
 
     location / {
-      proxy_pass         http://localhost:5000;
+      proxy_pass         http://comics_front_end_web_comics_front_end_1:5000/;
       proxy_redirect     off;
       proxy_set_header   Host $host;
       proxy_set_header   X-Real-IP $remote_addr;

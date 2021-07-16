@@ -8,7 +8,7 @@ WORKDIR /comics_front_end
 COPY . /comics_front_end
 
 # install app dependencies
-RUN yarn install
+#RUN yarn install
 
 # run production build
 RUN yarn build

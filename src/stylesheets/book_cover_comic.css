@@ -1,0 +1,20 @@
+.heart_on{
+	background-image: url(../images/heart_on.png);
+	backgroundRepeat: 'no-repeat';
+	height: 32px;
+	width: 36px;
+}
+
+.heart_off{
+	background-image: url(../images/heart_off.png);
+	backgroundRepeat: 'no-repeat';
+	height: 27px;
+	width: 30px;
+}
+
+.heart_off:hover, .heart_on:hover{
+	background-image: url(../images/heart_hover.png);
+	backgroundRepeat: 'no-repeat';
+	height: 27px;
+	width: 30px;
+}

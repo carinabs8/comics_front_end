@@ -10,9 +10,8 @@ import Character from './datas/Character';
 
 import logo from './images/marvel_logo.png';
 import './App.css';
-import {fetchData} from './datas/FetchData';
+import {fetchData, client} from './datas/FetchData';
 import BookCover from './datas/BookCover';
-import axios from 'axios';
 
 class App extends Component{
   constructor(props){
@@ -22,7 +21,7 @@ class App extends Component{
 
   bookCoverData(item){
     let object = this;
-    let response = axios.post('/book_covers/search', {
+    let response = client.post('/api/book_covers/search', {
       name: item
     });
 
@@ -37,9 +36,8 @@ class App extends Component{
   }
 
   componentDidMount(prevProps) {
-    let response = fetchData("/book_covers" + window.location.search);
+    let response = fetchData("/api/book_covers" + window.location.search);
     let object = this;
-    console.log(response);
     response.then(function (val) {
       if(val >= 403){
         object.setState({ ...object.state, status: val, loading: false})

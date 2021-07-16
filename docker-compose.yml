@@ -3,29 +3,29 @@ services:
     build:
       context: ./.
       dockerfile: Dockerfile
-    command: bash -c "serve -s build"
+    command: bash -c "yarn start" #"serve -s build"
     environment:
-      - REACT_APP_BACKEND_URL=http://localhost:3001/
-      - NODE_ENV=development
+      - REACT_APP_BACKEND_URL=http://comic_app_backend
+      - NODE_ENV=production
     volumes:
       - .:/comics_front_end
     ports:
       - "5000:5000"
     networks:
       - bridge
-      - comics_app_comics_backend
+      - comic_app_backend
   revproxy:
     build:
       context: ./docker-reverseProxy
       dockerfile: Dockerfile
     networks:
       - bridge
-      - comics_app_comics_backend
+      - comic_app_backend
     ports:
       - "80:80"
     volumes:
       - .:/comics_front_end
 networks:
   bridge:
-  comics_app_comics_backend:
+  comic_app_backend:
     external: true

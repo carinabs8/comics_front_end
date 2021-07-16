@@ -1,7 +1,11 @@
 import axios from 'axios';
 
+export const client = axios.create({
+  baseURL: '/'
+});
+
 export const fetchData = async path => {
-  return axios.get(path, {headers: {
+  return client.get(path, {headers: {
      "Content-Type": "application/json"
    }})
   .then(result => {
