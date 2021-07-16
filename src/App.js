@@ -5,9 +5,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col'
 import Character from './datas/Character';
-
-
-
 import logo from './images/marvel_logo.png';
 import './App.css';
 import {fetchData, client} from './datas/FetchData';

@@ -16,28 +16,34 @@ class BookCoverComic extends Component {
       UpVoteClass: this.props.UpVoteClass
     }
 
-    this.upVote = this._bookCoverUpVote.bind(this);
   }
 
-    _bookCoverUpVote(event){
-      let object = this;
-      let path = '/api/book_covers/'+ object.props.id + '/upvote';
-      let response = client.post(path);
-      let classUpVote = 'heart_off';
+  componentDidMount(prevProps) {
+    let object = this;
+    this.upVote = this.UpdateVote.bind(this);
+    
+  }
 
-      response.then(function (resp) {
-        if(resp >= 403){
-
-          // object.setState({ ...object.state, status: resp, loading: false})
-        }else{
-          alert('Done')
-          if(object.state.UpVoteClass == 'heart_off'){
-              classUpVote = 'heart_on';
-           }
-        }
-      });
-      this.setState({ ...this.state, UpVoteClass: classUpVote})
+  UpdateVote(event){
+    let classUpVote = 'heart_off';
+    if(this.state.UpVoteClass == 'heart_off'){
+      classUpVote = 'heart_on';
     }
+    this.setState({ ...this.state, UpVoteClass: classUpVote});
+    this._bookCoverUpVote(this)
+  }
+
+  _bookCoverUpVote(event){
+    let object = this;
+    let path = '/api/book_covers/'+ object.props.id + '/upvote';
+    let response = client.post(path);
+    let classUpVote = 'heart_off';
+
+    // response.then(function (resp) {
+    //   if(resp >= 403){
+    //   }
+    // });
+  }
 
 	render(){
     return(

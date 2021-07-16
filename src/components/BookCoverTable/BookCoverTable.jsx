@@ -40,6 +40,7 @@ class BookCoverTable extends Component {
         <Row>
           {this.props.BookCoverData.results.map((item, index) => {
             return(
+              
               <BookCoverComic data={item} index={index} id={item.id} key={index} userFavorite={item.user_favorite} changeVoteClass={this.changeVoteClass.bind(this)} UpVoteClass={this._setUpVoteClass(item.user_favorite)}/>
             )
           })}
